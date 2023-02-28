@@ -174,6 +174,8 @@ import { ref, onMounted, computed } from "vue";
 import { useCounterStore } from "@/stores/Counter.js";
 import { useRoute } from "vue-router";
 const store = useCounterStore();
+store.getProducts()
+
 const route = useRoute();
 const openPaymentModal = ref(false);
 const openReturnModal = ref(false);
@@ -218,7 +220,6 @@ function addToWishlist(){
 async function addToCart(p){
     store.addToCart(p);
 }
-store.getProducts()
 
 const modules = [Navigation, A11y];
 onMounted(() => {

@@ -146,8 +146,8 @@
             </ul>
             <h3 @click="products.open = !products.open" class="products__menu__item" :class="{'open': products.open}" v-for="(products, i) in store.allProducts.man.products" :key="i">
                 <span>{{products.title}}</span>
-                <button @click="isopen = !isopen">
-                    <svg  v-if="!isopen" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none">
+                <button>
+                    <svg  v-if="!products.open" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none">
                     <path stroke="#000" d="M5 0v10M0 5h10" />
                     </svg>
                     <svg v-else xmlns="http://www.w3.org/2000/svg" width="10" height="2" fill="none">
@@ -198,10 +198,5 @@ function yana(){
     page.value++;
 }
 
-const isopen = computed(()=>{
-    store.allProducts.man.products.forEach((p)=>{
-        p.open = false
-    })
-})
 </script>
 
