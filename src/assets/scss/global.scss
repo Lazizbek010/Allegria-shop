@@ -1,0 +1,458 @@
+:root {
+    --primary-color: #254A5A;
+    --primary-dark: #0F303F;
+    --tomato-color: #E64926;
+    --light-color1: #EAE9E8;
+    --light-color2: #CEC6C4;
+    --silver-color: #B7C1C5;
+    --white-color: #ffffff;
+    --black-color: #000000;
+    --line-color: #CECECE;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 7px;
+}
+/* button */
+::-webkit-scrollbar-button {
+    display: none;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--tomato-color); 
+    border-radius: 25px;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var( --primary-color); 
+}
+/* Track */
+::-webkit-scrollbar-track {
+    background: var(--white-color);
+    }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-style: normal;
+    border: none;
+    // outline: 1px solid red;
+    outline: none;
+    color: var(--primary-dark);
+}
+*::selection{
+    background: var(--tomato-color);
+    color: var(--white-color);
+}
+img{
+    border-radius: 4px;
+}
+.links-page{
+    position: relative;
+    cursor: pointer;
+    &::after{
+        content: '';
+        width: 100%;
+        height: 3px;
+        border-radius: 80px;
+        position: absolute;
+        background: var(--tomato-color);
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: transform .3s linear;
+        left: 0;
+        bottom: -4px;
+    }
+    &:hover{
+        &::after{
+            transform: scaleX(1);
+            transform-origin: center;
+        }
+    }
+}
+.toTop{
+    cursor: pointer;
+    position: fixed;
+    z-index: 2000;
+    right: 25px;
+    bottom: 47px;
+    background: var(--tomato-color);
+    width: 43px;
+    height: 43px;
+    border-radius: 5px;
+    display: grid;
+    place-items: center;
+    transition: .7s;
+    box-shadow: 0 0 6px 2px #d6d6d6; 
+    svg{
+        width: 22px;
+        height: 22px;
+        path{
+            fill: #fff;
+        }
+    }   
+}
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 50px;
+}
+
+.heart {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--white-color);
+}
+.swiper-pagination{
+    display: flex;
+    gap: 51px;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+.swiper-pagination-bullet{
+    color: var(--primary-dark);
+}
+.btn {
+    min-width: 200px;
+    padding: 15px 0;
+    text-align: center;
+    background: var(--primary-dark);
+    color: var(--light-color1);
+    font-family: 'Avenir', sans-serif;
+    text-transform: uppercase;
+    @include font(15, 22, 500);
+    border-radius: 6px;
+}
+.hidden{
+    display: none;
+}
+// Hamburger Menu
+.hamburger{
+    display: none;
+}
+// ============ MODALS STYLE ========
+.overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background:  rgba(0, 0, 0, 0.6);
+    z-index: 2011;
+}
+.modal{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--white-color);
+    border-radius: 6px;
+    z-index: 2012;
+}
+.close-modal{
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    @include media(560px){
+        top: 60px;
+    }
+}
+// Filter Modal
+.filtr-modal{
+    background: var(--white-color);
+    position: fixed;
+    width: 400px;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    z-index: 2012;
+    transform: translateX(0%);
+    h1{
+        width: 100%;
+        display: flex;
+        padding: 28px 40px;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+.filst-sort-modal__title{
+    font-family: 'Avenir', sans-serif;
+    text-transform: uppercase;
+    @include font(18, 18, 500);
+    border-bottom: 1px solid var(--light-color1);
+}
+// SOTR MODAL
+.sort-modal{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2012;
+    background: var(--white-color);
+    h1{
+        padding: 40px 0;
+        text-align-last: center;
+        position: relative;
+        margin-bottom: 55px;
+        .sort-modal-close{
+            position: absolute;
+            top: 40px;
+            right: 20px;
+        }
+    }
+    ul{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 56px;
+        li{
+            font-family: 'Avenir', sans-serif;
+            @include font(14,28,500);
+            &.active{
+                color: var(--tomato-color);
+                list-style-type: circle;
+            }
+        }
+    }
+}
+// Count Modal
+.count-modal{
+    padding: 52px 80px;
+    text-align: center;
+    @include media(560px){
+        width: 100%;
+        height: 100vh;
+        padding: 200px 15px;
+    }
+    h1{
+        @include font(25,34,500);
+        span{
+            color: var(--tomato-color);
+        }
+        margin-bottom: 22px;
+    }
+    input{
+        width: 250px;
+        margin: 0 auto;
+        padding: 5px;
+        margin-bottom: 15px;
+        text-align: center;
+        border-bottom: 1px solid var(--primary-dark);
+        @include media(560px){
+            width: 90%;
+        }
+    }
+    p{
+        width: 325px;
+        margin: 0 auto;
+        margin-bottom: 22px;
+        color: var(--primary-dark);
+        @include media(560px){
+            width: 90%;
+        }
+    }
+    &__btn{
+        width: 250px;   
+    }
+}
+// USER ENTRANCE MODAL
+.modal-enrtance{
+    width: 425px;
+    height: 425px;
+    padding: 77px 88px;
+    @include media(560px){
+        width: 100%;
+        height: 100vh;
+        padding: 203px 15px;
+    }
+    h1{
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    &__form{
+        input{
+            width: 100%;
+            border-bottom: 1px solid var(--primary-color);
+            padding: 5px;
+            margin-bottom: 20px;
+            &::placeholder{
+                color: var(--silver-color);
+            }
+        }
+        .user-password{
+            border-bottom: 1px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 5px;
+            input{
+                padding: 0;
+                border: none;
+                margin-bottom: 0;
+            }
+        }
+        button{
+            width: 100%;
+            margin-bottom: 35px;
+            font-weight: 800;
+        }
+        .user-setting{
+            text-align: center;
+            color: var(--tomato-color); 
+            span{
+                font-family: 'Avenir', sans-serif;
+                color: var(--tomato-color);    
+                @include font(12,16,500);
+                cursor: pointer;
+                &:hover{
+                    text-decoration: underline;
+                }
+                a{
+                    color: var(--tomato-color);    
+                }
+            }
+        }
+    }
+}
+// USER FORGOT MODAL
+.modal-forgot{
+    &.padding-email{
+        padding: 130px 46px 88px;
+        h1{
+            padding: 0 42px;
+            text-align: center;
+        }
+    }
+    input{
+        width: 100%;
+        border-bottom: 1px solid var(--primary-color);
+        padding: 5px;
+        margin-bottom: 20px;
+        &::placeholder{
+            color: var(--silver-color);
+        }
+    }
+    button{
+        width: 100%;
+        font-weight: 800;
+    }
+    .modal-forgot__text{
+        text-align: center;
+    }
+}
+.close{
+    position: absolute;
+    background: transparent;
+    svg{
+        pointer-events: none;
+    }
+}
+.add-to-cart-btn {
+    background: transparent;
+    border: 1px solid var(--primary-dark);
+    color: var(--primary-dark);
+}
+
+.nav-text-font {
+    font-family: 'Avenir', sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    @include font(16, 22, 400);
+    display: block;
+}
+
+.description-text {
+    font-family: 'Avenir', sans-serif;
+    color: var(--white-color);
+    @include font(14, 19, 400);
+}
+
+.cormorant-500 {
+    font-family: 'Cormorant', serif;
+    @include font(40, 48, 500);
+    text-transform: uppercase;
+    color: var(--light-color1);
+    span {
+        display: block;
+        @include font(20, 24, 500);
+        color: var(--light-color1);
+    }
+}
+.user-modal-title{
+    font-family: 'Avenir', sans-serif;
+    text-align: center;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    @include font(25,34,500);
+}
+.avenir-800 {
+    font-family: 'Avenir', sans-serif;
+    @include font(25, 34, 800);
+    text-transform: uppercase;
+}
+
+.products__title-500 {
+    font-family: 'Avenir', sans-serif;
+    text-transform: uppercase;
+    color: var(--primary-dark);
+    @include font(25, 25, 500);
+}
+
+.select-font {
+    font-family: 'Avenir', sans-serif;
+    color: var(--primary-dark);
+    @include font(14, 24, 400);
+}
+
+.products__menu__item {
+    font-family: 'Avenir', sans-serif;
+    @include font(14, 19, 800);
+}
+
+.about-product__link-400 {
+    font-family: 'Avenir', sans-serif;
+    @include font(12, 20, 400);
+}
+.about-product__desc-500{
+    font-family: 'Avenir', sans-serif;
+    @include font(14, 19, 500);
+}
+// --------------
+.product-price{
+    font-family: 'Jost', serif;
+    letter-spacing: 0.045em;
+    @include font(14,20,700);   
+    .old-price{
+        text-decoration: line-through;
+        color: var(--line-color);
+    }
+    .new-price{
+        color: var(--tomato-color);
+    }
+}
+
+.modalsEvent-enter-active,
+.modalsEvent-leave-active {
+  transition: all .3s ease-out;
+}
+
+.modalsEvent-enter-from,
+.modalsEvent-leave-to {
+  transform: translate(-50%, -50%) scale(0);  
+}
+.filtr-enter-active,
+.filtr-leave-active{
+    transition: all .3s ease;
+}
+.filtr-enter-from,
+.filtr-leave-to{
+    transform: translateX(110%);
+}
