@@ -183,11 +183,12 @@ const id = Number(route.params.id);
 // const { id } = defineProps(['id'])
 const index = ref(0);
 // const pr = ref({})
-const pr = computed(() => {
-    let item = store.products.find((el) => el.id === Number(route.params.id));
-    return item;
-});
-
+let pr = ref({})
+const item = () => {
+    pr = store.products.find((el) => el.id === Number(route.params.id));
+    return pr;
+};
+item()
 // async function getPr(){
 //     const res = await fetch('https://mocki.io/v1/ec76150c-d682-488f-be33-0374f0cb5834/'+id);
 //     const data = await res.json();
