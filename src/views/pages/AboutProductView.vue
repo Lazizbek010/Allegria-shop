@@ -21,7 +21,7 @@
                     </div>
                     <div class="main-img" v-if="pr.images">
                         <img :src="pr.images[index]" alt="" />
-                        <div class="heart" @click="addToWishlist">
+                        <div class="heart">
                             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="18"
                                 :fill="fav ? '#ff0000' : 'none'">
                                 <path :stroke="fav ? '#ff0000' : '#254A5A'" stroke-linecap="round"
@@ -179,7 +179,6 @@ store.getProducts()
 const route = useRoute();
 const openPaymentModal = ref(false);
 const openReturnModal = ref(false);
-const like = ref(false);
 const id = Number(route.params.id);
 // const { id } = defineProps(['id'])
 const index = ref(0);
@@ -204,16 +203,7 @@ const fav = computed(() => {
 })
 
 
-function addToWishlist(){
-    if(!fav.value) {
-        store.wishlist.push(pr)
-    }
-    else {
-        store.wishlist = store.wishlist.filter(p => p.id !== pr.id)
-    }
 
-    localStorage.setItem('WISH', JSON.stringify(store.wishlist))
-}
 
 
 
