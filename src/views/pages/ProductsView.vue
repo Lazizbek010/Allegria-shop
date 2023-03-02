@@ -190,7 +190,11 @@ onMounted(() => {
 
 const page = ref(1);
 const prs = computed(() => {
-    return store.products.slice(0, page.value * 6);
+    if(store?.products){
+        return store.products.slice(0, page.value * 6);
+    }else{
+        return {}
+    }
 });
 
 function yana(){

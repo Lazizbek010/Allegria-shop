@@ -174,7 +174,7 @@ import { ref, onMounted, computed } from "vue";
 import { useCounterStore } from "@/stores/Counter.js";
 import { useRoute } from "vue-router";
 const store = useCounterStore();
-store.getProducts()
+
 
 const route = useRoute();
 const openPaymentModal = ref(false);
@@ -185,10 +185,11 @@ const index = ref(0);
 // const pr = ref({})
 let pr = ref({})
 const item = () => {
-    pr = store.products.find((el) => el.id === Number(route.params.id));
-    return pr;
+    if(store?.products){
+        pr.value = store.products.find((el) => el.id === Number(route.params.id));
+    }
 };
-item()
+
 // async function getPr(){
 //     const res = await fetch('https://mocki.io/v1/ec76150c-d682-488f-be33-0374f0cb5834/'+id);
 //     const data = await res.json();
@@ -200,11 +201,18 @@ function changeImg(i) {
 }
 
 const fav = computed(() => {
-    return store.wishlist.find(el => el.id === pr.id);
+    if(store?.wishlist){
+        return store.wishlist.find(el => el.id === pr.id);
+    }else{
+        return false
+    }
 })
 
-
-
+async function fetchData(){
+    await store.getProducts()
+    item()
+}
+fetchData()
 
 
 
