@@ -170,7 +170,7 @@ import { Navigation, A11y } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import AOS from "aos";
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted, computed, watch } from "vue";
 import { useCounterStore } from "@/stores/Counter.js";
 import { useRoute } from "vue-router";
 const store = useCounterStore();
@@ -179,16 +179,31 @@ const store = useCounterStore();
 const route = useRoute();
 const openPaymentModal = ref(false);
 const openReturnModal = ref(false);
-const id = Number(route.params.id);
 // const { id } = defineProps(['id'])
 const index = ref(0);
 // const pr = ref({})
-let pr = ref({})
-const item = () => {
+// let pr = ref({})
+// const item = () => {
+//     if(store?.products){
+//         pr.value = store.products.find((el) => el.id === +id.value);
+//     }
+// };
+
+const pr = computed(() => {
+    let result = {}
     if(store?.products){
-        pr.value = store.products.find((el) => el.id === Number(route.params.id));
+        console.log(route.params.id);
+        result = store.products.find((el) => el.id === +route.params.id);
+        // debugger
     }
-};
+    // debugger
+    return result
+});
+
+watch(route, (val) => {
+    console.log(val);
+    // item()
+})
 
 // async function getPr(){
 //     const res = await fetch('https://mocki.io/v1/ec76150c-d682-488f-be33-0374f0cb5834/'+id);
@@ -210,7 +225,7 @@ const fav = computed(() => {
 
 async function fetchData(){
     await store.getProducts()
-    item()
+    // item()
 }
 fetchData()
 
