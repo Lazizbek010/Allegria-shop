@@ -29,7 +29,11 @@ const { product } = defineProps(['product']);
 
 const store = useCounterStore()
 const fav = computed(() => {
-    return store.wishlist.find(el => el.id === product.id);
+    if(store?.wishlist){
+        return store.wishlist.find(el => el.id === product.id);
+    }else{
+        return {}
+    }
 })
 
 function addToWishlist(){
@@ -37,7 +41,9 @@ function addToWishlist(){
         store.wishlist.push(product)
     }
     else {
+        if(store?.wishlist){
         store.wishlist = store.wishlist.filter(p => p.id !== product.id)
+        }
     }
 
     localStorage.setItem('WISH', JSON.stringify(store.wishlist))
