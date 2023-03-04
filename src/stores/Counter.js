@@ -11,8 +11,11 @@ export const useCounterStore = defineStore('counter', () => {
   const wishlist = ref(JSON.parse(localStorage.getItem(WISHLIST_KEY))) ?? ref([]);
   const cartPr = ref(JSON.parse(localStorage.getItem(CART_KEY))) ?? ref([]);
   const products = ref([]);
-
-  
+  if(allProducts.value?.man?.products?.length){
+    allProducts.value.man.products.forEach(p =>{ 
+      p.openn = false
+    })
+  }
   // Functions ============= 
   function addToCart(p) {
     if(!p.count) p.count = 1

@@ -192,7 +192,6 @@ const index = ref(0);
 const pr = computed(() => {
     let result = {}
     if(store?.products){
-        console.log(route.params.id);
         result = store.products.find((el) => el.id === +route.params.id);
         // debugger
     }

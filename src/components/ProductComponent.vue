@@ -17,7 +17,7 @@
         </div>
         <h2>{{ product.title }}</h2>
         <h6> {{product.name}}</h6>
-        <p><span class="product-old-item">{{product.price.oldPrice}}</span> <span class="product-new-item">{{product.price.newPrice}}</span></p>
+        <p v-if="product?.price?.oldPrice"><span class="product-old-item">{{product.price.oldPrice}}</span> <span class="product-new-item">{{product.price.newPrice}}</span></p>
     </div>
 </template>
 
@@ -29,13 +29,8 @@ const { product } = defineProps(['product']);
 
 const store = useCounterStore()
 const fav = computed(() => {
-    if(store?.wishlist){
-        return store.wishlist.find(el => el.id === product.id);
-    }else{
-        return {}
-    }
+    return !!store.wishlist.find(el => el.id === product.id);
 })
-
 function addToWishlist(){
     if(!fav.value) {
         store.wishlist.push(product)
